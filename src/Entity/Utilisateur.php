@@ -2,9 +2,7 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -56,8 +54,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="plainPassword", type="string", length=50, nullable=false)
      */
     private $plainPassword;
 
@@ -68,25 +64,11 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-    public function eraseCredentials(): void
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
-     */
-    private $createdAt = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
-     */
-    private $updatedAt = 'CURRENT_TIMESTAMP';
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -177,6 +159,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->plainPassword;
     }
 
+    /**
+     * @return  self
+     */
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
@@ -196,24 +181,30 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): static
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
