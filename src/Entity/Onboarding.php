@@ -112,9 +112,9 @@ class Onboarding
     private $user;
 
     /**
-     * @var \Communauté
+     * @var \Communaute
      *
-     * @ORM\ManyToOne(targetEntity="Communauté")
+     * @ORM\ManyToOne(targetEntity="Communaute")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="community_id", referencedColumnName="community_id")
      * })
@@ -285,12 +285,12 @@ class Onboarding
         return $this;
     }
 
-    public function getCommunity(): ?Communauté
+    public function getCommunity(): ?Communaute
     {
         return $this->community;
     }
 
-    public function setCommunity(?Communauté $community): static
+    public function setCommunity(?Communaute $community): static
     {
         $this->community = $community;
 

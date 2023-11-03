@@ -91,7 +91,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Communauté", inversedBy="user")
+     * @ORM\ManyToMany(targetEntity="Communaute", inversedBy="user")
      * @ORM\JoinTable(name="lier_",
      *   joinColumns={
      *     @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
@@ -221,14 +221,14 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Communauté>
+     * @return Collection<int, Communaute>
      */
     public function getCommunity(): Collection
     {
         return $this->community;
     }
 
-    public function addCommunity(Communauté $community): static
+    public function addCommunity(Communaute $community): static
     {
         if (!$this->community->contains($community)) {
             $this->community->add($community);
@@ -237,7 +237,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeCommunity(Communauté $community): static
+    public function removeCommunity(Communaute $community): static
     {
         $this->community->removeElement($community);
 

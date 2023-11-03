@@ -8,12 +8,12 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Communauté
+ * Communaute
  *
- * @ORM\Table(name="communauté", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"})})
- * @ORM\Entity(repositoryClass="App\Repository\CommunautéRepository")
+ * @ORM\Table(name="communaute", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"})})
+ * @ORM\Entity(repositoryClass="App\Repository\CommunauteRepository")
  */
-class Communauté
+class Communaute
 {
     /**
      * @var int
