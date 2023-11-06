@@ -1,3 +1,7 @@
+{# templates/home.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,66 +13,8 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Beguide</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
-<!--
-
-
-https://templatemo.com/tm-574-mexant
-
--->
-  </head>
-
-<body>
-
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-      <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -->
-                    <a href="{{ path('app_home') }}" class="logo">
-    <img src="assets/images/logo-128 1.png" alt="" style="width: 80px; height: auto;">
-</a>
-                      <!-- ***** Logo End ***** -->
-                      <!-- ***** Menu Start ***** -->
-                      <ul class="nav">
-                          <li class="scroll-to-section"><a href="#top" class="active">Accueil</a></li>
-                          <li class="scroll-to-section"><a href="#services">Services</a></li>
-                          <li class="scroll-to-section"><a href="#about">A propos</a></li>
-                          <li class="has-sub">
-                              <a href="javascript:void(0)">Options</a>
-                              <ul class="sub-menu">
-                                  <li><a href="">les cours</a></li>
-                                  <li><a href="">Nos services</a></li>
-                                  <li><a href="">Contact</a></li>
-                              </ul>
-                          </li>
-                          <li><a href="contact-us.html">Connexion</a></li> 
-                      </ul>        
-                      <a class='menu-trigger'>
-                          <span>Menu</span>
-                      </a>
-                      <!-- ***** Menu End ***** -->
-                  </nav>
-              </div>
-          </div>
-      </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
+ 
+  
   <!-- ***** Main Banner Area Start ***** -->
   <div class="swiper-container" id="top">
     <div class="swiper-wrapper">
@@ -371,42 +317,11 @@ https://templatemo.com/tm-574-mexant
           <div class="section-heading">
             <h6>Nous contacter</h6>
             <h4>Pour toutes questions</h4>
-          </div>
-          <form id="calculate" action="" method="get">
-            <div class="row">
-              <div class="col-lg-6">
-                <fieldset>
-                  <label for="name">Nom</label>
-                  <input type="name" name="name" id="name" placeholder="" autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-6">
-                <fieldset>
-                  <label for="email">Email</label>
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="" required="">
-                </fieldset>
+        
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <label for="subject">Motif</label>
-                  <input type="subject" name="subject" id="subject" placeholder="" autocomplete="on" >
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="chooseOption" class="form-label">Contenu</label>
-                  <select name="Category" class="form-select" aria-label="Default select example" id="chooseOption" onchange="this.form.click()">
-                      <option selected>Choisir une Option</option>
-                      <option type="checkbox" name="option1" value="Online Banking">Dev Back-end</option>
-                      <option value="Financial Control">Dev Front-end</option>
-                      <option value="Yearly Profit">web Design</option>
-                      <option value="Crypto Investment">Autre</option>
-                  </select>
-              </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <button type="submit" id="form-submit" class="orange-button">Soumettre</button>
+                  <button type="submit" id="form-submit" class="orange-button">contact</button>
                 </fieldset>
               </div>
             </div>
@@ -415,7 +330,7 @@ https://templatemo.com/tm-574-mexant
       </div>
     </div>
   </section>
-
+ 
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="row">
@@ -459,55 +374,6 @@ https://templatemo.com/tm-574-mexant
       </div>
     </div>
   </section>
-
-  <section class="partners">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-2 col-sm-4 col-6">
-          <div class="item">
-            <img src="assets/images/client-01.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-2 col-sm-4 col-6">
-          <div class="item">
-            <img src="assets/images/client-01.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-2 col-sm-4 col-6">
-          <div class="item">
-            <img src="assets/images/client-01.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-2 col-sm-4 col-6">
-          <div class="item">
-            <img src="assets/images/client-01.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-2 col-sm-4 col-6">
-          <div class="item">
-            <img src="assets/images/client-01.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-2 col-sm-4 col-6">
-          <div class="item">
-            <img src="assets/images/client-01.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>Copyright © 2023 BEGUIDE.co, Ltd. All Rights Reserved. 
-          
-          <br>Designed by <a title="CSS Templates" rel="sponsored" href="https://templatemo.com" target="_blank">BEGUIDE</a> Distributed By BEGUIDE</p>
-        </div>
-      </div>
-    </div>
-  </footer>
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
@@ -566,3 +432,5 @@ https://templatemo.com/tm-574-mexant
     </script>
   </body>
 </html>
+
+{% endblock %}

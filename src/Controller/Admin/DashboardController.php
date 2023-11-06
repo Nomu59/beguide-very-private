@@ -34,6 +34,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateur', 'fa-regular fa-user', Utilisateur::class);
         yield MenuItem::linkToCrud('Onboarding', 'fa-solid fa-table', Onboarding::class);
         yield MenuItem::linkToCrud('Tutoriel', 'fa-solid fa-lines-leaning', Tutorial::class);
-        yield MenuItem::linkToCrud('Communauté', 'fa-solid fa-lines-leaning', Communaute::class);
+        yield MenuItem::linkToCrud('Communauté', 'fa-solid fa-people-group', Communaute::class);
     }
 }
