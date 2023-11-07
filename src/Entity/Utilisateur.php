@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Utilisateur
@@ -42,9 +43,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $lastname;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $birthday = null;
-
     /**
      * @var string
      *
@@ -74,30 +72,31 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     /**
-     * @var string
-     * 
-     * @ORM\Column(name="plainPassword", type="string", length=50, nullable=false)
-     */
-    private $plainPassword;
-
-    /**
      * @var string The hashed password
      *
      * @ORM\Column(name="password", type="string", length=50, nullable=false)
      */
     private $password;
 
+    /**
+     * @var ?\DateTimeImmutable
+     *
+     * @ORM\Column(name="createdAt", type="string", length=50, nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var ?\DateTimeImmutable
+     *
+     * @ORM\Column(name="updatedAt", type="string", length=50, nullable=false)
+     */
+    private $updatedAt;
+
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -122,6 +121,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->community = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -150,18 +151,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): static
     {
         $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function getBirthday(): ?\DateTimeInterface
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(\DateTimeInterface $birthday): static
-    {
-        $this->birthday = $birthday;
 
         return $this;
     }
@@ -222,18 +211,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-
-        return $this;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -251,7 +228,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -263,7 +240,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 

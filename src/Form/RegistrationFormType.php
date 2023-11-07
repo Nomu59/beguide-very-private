@@ -42,61 +42,56 @@ class RegistrationFormType extends AbstractType
             ],
         ])
 
-        ->add('birthday', TextType::class, [
-            'label' => 'Date de naissance',
-            'invalid_message' => 'Veuillez indiquer votre date de naissance',
-            // d'autres options de configuration
+        ->add('email', EmailType::class, [
+            'constraints' => [
+                new Email([
+                    'message' => 'L\'adresse e-mail n\'est pas valide', // Message d'erreur en cas d'adresse e-mail invalide
+                ]),
+            ],
         ])
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new Email([
-                        'message' => 'L\'adresse e-mail n\'est pas valide', // Message d'erreur en cas d'adresse e-mail invalide
-                    ]),
-                ],
-            ])
 
-            ->add('address', TextType::class, [
-                'constraints' => [
-                    
-                ],
-            ])
+        ->add('address', TextType::class, [
+            'constraints' => [
+                
+            ],
+        ])
 
-            ->add('telephone', TextType::class, [
-                'constraints' => [
-                    new Regex([
-                        'pattern' => '/^\d+$/',
-                        'message' => 'Le numéro de téléphone doit contenir uniquement des chiffres.',
-                    ]),
-                ],
-            ])
+        ->add('telephone', TextType::class, [
+            'constraints' => [
+                new Regex([
+                    'pattern' => '/^\d+$/',
+                    'message' => 'Le numéro de téléphone doit contenir uniquement des chiffres.',
+                ]),
+            ],
+        ])
 
 
-            ->add('Conditions', CheckboxType::class, [ // Ajoute un champ de type case à cocher nommé 'conditions '
-                'mapped' => false, // Ne mappe pas ce champ directement à une propriété de l'entité User
-                'constraints' => [ // Ajoute des contraintes de validation
-                    new IsTrue([  // Vérifie si la case à cocher est cochée
-                        'message' => 'Vous devez accepter nos conditions d\'utilisation', // Message d'erreur en cas d'échec
-                    ]),
-                ],
+        ->add('Conditions', CheckboxType::class, [ // Ajoute un champ de type case à cocher nommé 'conditions '
+            'mapped' => false, // Ne mappe pas ce champ directement à une propriété de l'entité User
+            'constraints' => [ // Ajoute des contraintes de validation
+                new IsTrue([  // Vérifie si la case à cocher est cochée
+                    'message' => 'Vous devez accepter nos conditions d\'utilisation', // Message d'erreur en cas d'échec
+                ]),
+            ],
 
-                'label' => 'En créeant un compte vous acceptez nos conditions générales de vente', // Ajoutez cette ligne pour définir un label personnalisé
-            ])
+            'label' => 'En créeant un compte vous acceptez nos conditions générales de vente', // Ajoutez cette ligne pour définir un label personnalisé
+        ])
 
-            ->add('password', PasswordType::class, [ // Ajoute un champ de type mot de passe nommé 'password'
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],// Attribut HTML pour l'autocomplétion du champ de mot de passe
-                'constraints' => [
-                    new Length([  // Vérifie la longueur du mot de passe
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit contenir au moins 6 caractères', //message erreur
-                        'max' => 10,
-                    ]),
-                    new Regex([
-                        'pattern' => '/^(?=.*[A-Z])(?=.*\d)/',
-                        'message' => 'Votre mot de passe doit contenir au moins une lettre majuscule et au moins un chiffre.',
-                    ]),
-                ],
-            ]);
+        ->add('password', PasswordType::class, [ // Ajoute un champ de type mot de passe nommé 'password'
+            'mapped' => false,
+            'attr' => ['autocomplete' => 'new-password'],// Attribut HTML pour l'autocomplétion du champ de mot de passe
+            'constraints' => [
+                new Length([  // Vérifie la longueur du mot de passe
+                    'min' => 6,
+                    'minMessage' => 'Votre mot de passe doit contenir au moins 6 caractères', //message erreur
+                    'max' => 10,
+                ]),
+                new Regex([
+                    'pattern' => '/^(?=.*[A-Z])(?=.*\d)/',
+                    'message' => 'Votre mot de passe doit contenir au moins une lettre majuscule et au moins un chiffre.',
+                ]),
+            ],
+        ]);
     }
 
     
