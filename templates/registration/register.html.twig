@@ -127,6 +127,10 @@
             {{form_label(RegistrationFormType.firstname) }}
             {{form_widget(RegistrationFormType.firstname, {'attr': {'placeholder': 'Votre contenu ici'}}) }}
             {{ form_errors(RegistrationFormType.firstname) }}
+
+            {{form_label(RegistrationFormType.birthday) }}
+            {{form_widget(RegistrationFormType.birthday, {'attr': {'placeholder':'Votre contenu ici'}}) }}
+            {{ form_errors(RegistrationFormType.birthday) }}
                 
             {{form_label(RegistrationFormType.email) }}
             {{form_widget(RegistrationFormType.email, {'attr': {'placeholder': 'Votre contenu ici'}}) }}

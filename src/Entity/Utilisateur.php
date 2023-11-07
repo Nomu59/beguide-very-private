@@ -44,6 +44,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastname;
 
     /**
+     * @var ?\DateTime
+     *
+     * @ORM\Column(name="birthday", type="date", length=50, nullable=false)
+     */
+    private $birthday;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50, nullable=false)
@@ -81,14 +88,14 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var ?\DateTimeImmutable
      *
-     * @ORM\Column(name="createdAt", type="string", length=50, nullable=false)
+     * @ORM\Column(name="createdAt", type="datetime_immutable", length=50, nullable=false)
      */
     private $createdAt;
 
     /**
      * @var ?\DateTimeImmutable
      *
-     * @ORM\Column(name="updatedAt", type="string", length=50, nullable=false)
+     * @ORM\Column(name="updatedAt", type="datetime_immutable", length=50, nullable=false)
      */
     private $updatedAt;
 
@@ -151,6 +158,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): static
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTime
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTime $birthday): static
+    {
+        $this->birthday = $birthday;
 
         return $this;
     }

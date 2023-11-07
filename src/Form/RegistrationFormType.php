@@ -42,6 +42,11 @@ class RegistrationFormType extends AbstractType
             ],
         ])
 
+        ->add('birthday', null, [
+            'widget' => 'single_text',
+            'invalid_message' => 'Veuillez indiquer votre date de naissance',
+        ])
+
         ->add('email', EmailType::class, [
             'constraints' => [
                 new Email([
