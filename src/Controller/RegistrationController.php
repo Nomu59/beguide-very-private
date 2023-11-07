@@ -23,7 +23,7 @@ class RegistrationController extends AbstractController
 
         // creation du formulaire avec la class 'RegistrationFormType'
         // Le deuxième argument '$user' indique que le formulaire sera lié à l'objet '$user', ce qui signifie que les données saisies dans le formulaire seront associées à cet user.
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationType::class, $user);
 
         // extraire et gérer les données du formulaire à partir de la requête HTTP, les lier à l'objet $user
         $form->handleRequest($request);
