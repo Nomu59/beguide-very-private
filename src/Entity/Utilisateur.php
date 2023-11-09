@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Utilisateur
@@ -43,11 +44,32 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastname;
 
     /**
+     * @var ?\DateTime
+     *
+     * @ORM\Column(name="birthday", type="date", length=50, nullable=false)
+     */
+    private $birthday;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50, nullable=false)
      */
     private $email;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="address", type="string", length=50, nullable=false)
+     */
+    private $address;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="telephone", type="string", length=50, nullable=false)
+     */
+    private $telephone;
 
     /**
      * @var array
@@ -57,38 +79,32 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     /**
-     * @var string
-     * 
-     * @ORM\Column(name="plainPassword", type="string", length=50, nullable=false)
-     */
-    private $plainPassword;
-
-    /**
      * @var string The hashed password
      *
      * @ORM\Column(name="password", type="string", length=50, nullable=false)
      */
     private $password;
+    private ?string $plainPassword = null;
+
+    /**
+     * @var ?\DateTimeImmutable
+     *
+     * @ORM\Column(name="createdAt", type="datetime_immutable", length=50, nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var ?\DateTimeImmutable
+     *
+     * @ORM\Column(name="updatedAt", type="datetime_immutable", length=50, nullable=false)
+     */
+    private $updatedAt;
 
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
-     */
-    private $createdAt = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
-     */
-    private $updatedAt = 'CURRENT_TIMESTAMP';
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -113,6 +129,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->community = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -145,6 +163,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getBirthday(): ?\DateTime
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTime $birthday): static
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -153,6 +183,30 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): static
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): static
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }
@@ -177,18 +231,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-
-        return $this;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -201,24 +243,24 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
@@ -261,4 +303,22 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
+    /**
+     * Get the value of plainPassword
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set the value of plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
 }

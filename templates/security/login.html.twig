@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="mt-4">Formulaire de connexion</h1>
+        <h1 class="mt-4">Connexion</h1>
 
         <form action="{{ path('app_login') }}" method="post">
             <div class="form-group">
@@ -18,5 +18,7 @@
 
             <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
         </form>
+
+        <p class="mt-4">Vous n'avez pas de compte ? <a href="{{ path('app_register') }}">S'inscrire</a></p>
     </div>
 {% endblock %}
