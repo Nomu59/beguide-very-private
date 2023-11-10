@@ -74,7 +74,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var array
      * 
-     * @ORM\Column(name="roles", type="array", length=50, nullable=false)
+     * @ORM\Column(name="roles", type="json", length=50, nullable=false)
      */
     private $roles = [];
 
